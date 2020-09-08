@@ -1,4 +1,4 @@
-import pandas as pd 
+import pandas as pd
 import numpy as np
 
 from sklearn.model_selection import train_test_split
@@ -12,7 +12,6 @@ def enlarge(n):
     Function will muliply by 100
     """
     return n*100
-
 
 
 def clean_frame(df):
@@ -30,7 +29,6 @@ def clean_frame(df):
                      x == None or x == '?' else x)
     df = df.apply(pd.to_numeric, errors='ignore')
     return (df)
-
 
 
 def null_counts(df):
@@ -58,16 +56,18 @@ def null_counts(df):
         q_c.append(q_mark_count)
         m_c.append(missing_count)
     null_count = pd.DataFrame(data=(n_c, z_c, q_c, m_c),
-                    index=['NaN', 0, '?', 'Missing'], columns=columns)
+                            index=['NaN', 0, '?', 'Missing'],
+                            columns=columns)
     return (null_count)
+
 
 def train_validation_test_split(df, features, target,
                                 train_size=0.7, val_size=0.1,
                                 test_size=0.2, random_state=None,
                                 shuffle=True):
     '''
-    This function is a utility wrapper around the Scikit-Learn train_test_split that splits arrays or 
-    matrices into train, validation, and test subsets.
+    This function is a utility wrapper around the Scikit-Learn train_test_split
+    that splits arrays or matrices into train, validation, and test subsets.
     Args:
         df (Pandas DataFrame) Dataframe with code.
 
@@ -85,20 +85,22 @@ def train_validation_test_split(df, features, target,
         shuffle (bool): Whether or not to shuffle the data before splitting
 
     Returns:
-        Train, test, and validation dataframes for features (X) and target (y). 
+        Train, test, and validation dataframes for features (X) and target (y).
     '''
     '''
     # X_train_val, X_test, y_train_val, y_test = train_test_split(
-    #     self.X, self.y, test_size=test_size, random_state=random_state, shuffle=shuffle)
+        #     self.X, self.y, test_size=test_size, random_state=random_state,
+        #       shuffle=shuffle)
     '''
     X = df[features]
     y = df[target]
 
+    X_train_val, X_test, y_train_val, y_test = train_test_split(X, y,
+                test_size=test_size, random_state=random_state, shuffle=shuffle)
 
-    X_train_val, X_test, y_train_val, y_test = train_test_split(X, y, test_size=test_size, random_state=random_state, shuffle=shuffle)
-
-    X_train, X_val, y_train, y_val = train_test_split(X_train_val, y_train_val, test_size=val_size / (train_size + val_size),
-        random_state=random_state, shuffle=shuffle)
+    X_train, X_val, y_train, y_val = train_test_split(X_train_val, y_train_val,
+                                test_size=val_size / (train_size + val_size),
+                                random_state=random_state, shuffle=shuffle)
 
     return X_train, X_val, X_test, y_train, y_val, y_test
 
@@ -111,9 +113,7 @@ if __name__ == '__main__':
     df = pd.DataFrame(data=raw_data['data'], columns=raw_data['feature_names'])
     df['target'] = raw_data['target']
 
-    X_train, X_val, X_test, y_train, y_val, y_test = train_validation_test_split(df, features=['ash', 'hue'], target='target')
-    
+    X_train, X_val, X_test, y_train, y_val, y_test = train_validation_test_split(df,
+                                    features=['ash', 'hue'], target='target')
+
     # breakpoint()
-
-    
-
