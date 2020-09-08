@@ -19,7 +19,7 @@ print(enlarge(9))
 ```
 
 ```
-from_mylambdata.ds_utilites import null_counts
+from mylambdata.ds_utilities import null_counts
 
 null_counts(df)
 

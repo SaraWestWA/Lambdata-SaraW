@@ -1,5 +1,8 @@
 from mylambdata.ds_utilities import enlarge
-from mylambdata.ds_utilities import count_nulls
+from mylambdata.ds_utilities import null_counts
+import numpy as np
+import pandas as pd
+from mylambdata.ds_utilities import clean_frame
 
 data = ([[1, '', 1, 4, np.nan, 6, '0', 2],
             [2, 2, 1, 0, 1, 6, 6, 2],
@@ -15,3 +18,6 @@ df = pd.DataFrame(data, index=names).T
 
 nulls = null_counts(df)
 print(nulls)
+
+clean_frame (df)
+print(df)

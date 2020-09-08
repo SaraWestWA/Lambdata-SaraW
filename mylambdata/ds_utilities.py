@@ -14,6 +14,25 @@ def enlarge(n):
     return n*100
 
 
+
+def clean_frame(df):
+
+    """
+    Param is a dataframe, can have both catagorical and numeric data
+
+    Function returns the dataframe with leading and trailing zeros removed;
+    '?','', and empty cells replaced with NaN, dtype changed to float
+    if possible.
+    """
+
+    df = df.applymap(lambda x: x.strip() if type(x) == str else x)
+    df = df.applymap(lambda x: np.nan if type(x) == str and x == ''or
+                     x == None or x == '?' else x)
+    df = df.apply(pd.to_numeric, errors='ignore')
+    return (df)
+
+
+
 def null_counts(df):
 
     """
@@ -38,29 +57,14 @@ def null_counts(df):
         z_c.append(zero_count)
         q_c.append(q_mark_count)
         m_c.append(missing_count)
-        null_count = pd.DataFrame(data=(n_c, z_c, q_c, m_c),
+    null_count = pd.DataFrame(data=(n_c, z_c, q_c, m_c),
                     index=['NaN', 0, '?', 'Missing'], columns=columns)
-        return (null_count)
+    return (null_count)
 
 
-def clean_frame(df):
 
-    """
-    Param is a dataframe, can have both catagorical and numeric data
-
-    Function returns the dataframe with leading and trailing zeros removed;
-    '?','', and empty cells replaced with NaN, dtype changed to float
-    if possible.
-    """
-
-    df = df.applymap(lambda x: x.strip() if type(x) == str else x)
-    df = df.applymap(lambda x: np.nan if type(x) == str and x == ''or
-                     x == None or x == '?' else x)
-    df = df.apply(pd.to_numeric, errors='ignore')
-    return (df)
-
-if __name__ == '__main__':
-    print(enlarge(8))
+# if __name__ == '__main__':
+# print(enlarge(8))
 
     
 
