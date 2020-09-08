@@ -11,6 +11,7 @@ pylint = "*"
 [packages]
 pandas = "*"
 numpy = "*"
+sklearn = "*"
 
 [requires]
 python_version = "3.7"
