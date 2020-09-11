@@ -7,7 +7,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="Lambdata-SaraW", # the name that you will install via pip
-    version="0.0.7",
+    version="0.0.8",
     author="SaraWestWA",
     author_email="SaraEWestDS@gmail.com",
     description="Very first example package",

@@ -19,18 +19,23 @@ print(enlarge(9))
 ```
 
 ```
-from mylambdata.ds_utilities import null_counts
+pip install -i https://test.pypi.org/simple/ Lambdata-SaraW==0.0.8
 
-null_counts(df)
+from mylambdata.ds_utilities import My_Ready_Frame
 
-returns dataframe of null values per column
+q = My_Ready_Frame.null_counts(df, True, True, True, True)
+print(q)
+
+returns new dataframe of null values per column
 ```
 
-```from my_lambdata.ds_utilities import clean_frame
+```
+from mylambdata.ds_utilities import My_Ready_Frame
 
-clean_frame(df)
+z = My_Ready_Frame.clean_frame(df)
+print(z)
 
 returns dataframe with spaces removed and missing values
-replaced with np.nan
+replaced with np.nan, column dtypes set to int64 if possible
 ```
 
